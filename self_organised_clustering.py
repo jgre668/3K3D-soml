@@ -2,7 +2,11 @@ from parameters import *
 from pipeline import *
 import shutil
 
-def self_organised_clustering(data_file, solver_directory):
+def self_organised_clustering():
+
+    # define file paths
+    data_file = Path(params['data_file'])
+    solver_directory = Path(params['solver_directory'])
 
     # create an output folder
     print('\nCreating an output folder...')

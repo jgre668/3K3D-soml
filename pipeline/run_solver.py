@@ -15,8 +15,8 @@ def run_solver(solver_directory, verbose = True):
         'cmake',
         '-S', solver_directory,
         '-B', build_dir,
-        '-DCMAKE_C_COMPILER=gcc-14',
-        '-DCMAKE_CXX_COMPILER=g++-14'
+        '-DCMAKE_C_COMPILER=gcc-11',
+        '-DCMAKE_CXX_COMPILER=g++-11'
     ]
 
     if verbose: print("\nConfiguring the project with CMake...")

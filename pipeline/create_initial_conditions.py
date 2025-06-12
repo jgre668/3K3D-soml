@@ -26,7 +26,7 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
 
     # initialise component fields
     U_init = np.full((nx, ny, nz), u0_lower, dtype=np.float32)
-    V_init = np.zeros((nx, ny, nz), dtype=np.float32)
+    V_init = np.full((nx, ny, nz), u0_lower, dtype=np.float32)
     W_init = np.full((nx, ny, nz), u0_lower, dtype=np.float32)
 
     scale_factor = nx / (x_max - x_min)
