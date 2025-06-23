@@ -1,7 +1,7 @@
 params = {
 
     # data file
-    'data_file': "/home/jgre668/test_data/3D/two_points_0.25_0.75.csv",
+    'data_file': "/home/jgre668/test_data/3D/three_points.csv",
 
     # solver directory
     'solver_directory': "/home/jgre668/3K3D-solver",
@@ -34,7 +34,7 @@ params = {
     'z_max': 1,
     'dx': 0.01,
     'dy': 0.01,
-    'dz':0.01,
+    'dz': 0.01,
 
     # time
     't_min': 0.0,

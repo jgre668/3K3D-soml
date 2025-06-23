@@ -53,7 +53,7 @@ def self_organised_clustering():
     shutil.move(solver_directory / "binaries/3K3D/3K3D_u.bin",
                 output_directory / "binary/3K3D_u.bin")
     shutil.move(solver_directory / "binaries/3K3D/3K3D_v.bin",
-                output_directory / "binary/3K2D_v.bin")
+                output_directory / "binary/3K3D_v.bin")
     shutil.move(solver_directory / "binaries/3K3D/3K3D_w.bin",
                 output_directory / "binary/3K3D_w.bin")
 

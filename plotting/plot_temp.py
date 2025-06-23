@@ -40,19 +40,21 @@ def plot_temp(u_data_path, v_data_path, dn=10):
         fig, axs = plt.subplots(2, 1, figsize=(6, 8))
 
         # 2D heatmap of u slice
-        im = axs[0].imshow(u[t, :, :, z_slice], cmap='viridis', vmin=global_min, vmax=global_max)
-        axs[0].set_title(f'u[t={t}, z={z_slice}]')
+        im = axs[0].imshow(u[t, :, :, z_slice].T, cmap='viridis', vmin=global_min, vmax=global_max)
+        axs[0].set_title(rf'u[t={np.round(t*0.1,1)}, $z_{{idx}}$ = {z_slice}]')
+        axs[0].set_xlabel('x')
+        axs[0].set_ylabel('y')
         fig.colorbar(im, ax=axs[0])
 
         # line slice through the middle of y for both u and v
         u_line = u[t, :, y_slice, z_slice]
         v_line = v[t, :, y_slice, z_slice]
 
-        axs[1].plot(np.arange(nx), u_line, label='u (activator)')
-        axs[1].plot(np.arange(nx), v_line, label='v (inhibitor)')
+        axs[1].plot(np.arange(nx), u_line, label=f'$u$')
+        axs[1].plot(np.arange(nx), v_line, label=f'$v$')
         axs[1].set_ylim(1.1 * line_global_min, 1.1 * line_global_max)
         axs[1].set_xlim(0, nx - 1)
-        axs[1].set_title(f'Slice at y={y_slice}, z={z_slice}, t={np.round(t*0.1,1)}s')
+        axs[1].set_title(rf'slice at $y_{{idx}}$ = {y_slice}, $z_{{idx}}$ = {z_slice}, t = {np.round(t*0.1,1)}s')
         axs[1].set_xlabel('x')
         axs[1].set_ylabel('value')
         axs[1].legend()
