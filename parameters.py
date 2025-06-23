@@ -1,7 +1,7 @@
 params = {
 
     # data file
-    'data_file': "/home/jgre668/test_data/3D/two_points_0.3_0.7.csv",
+    'data_file': "/home/jgre668/test_data/3D/two_points_0.25_0.75.csv",
 
     # solver directory
     'solver_directory': "/home/jgre668/3K3D-solver",
@@ -10,7 +10,7 @@ params = {
     'output_path': "/home/jgre668/3K3D-soml/outputs",
 
     # label simulation
-    'label': "test_label_function",
+    'label': "merge_investigation",
 
     # model parameters
     'kappa1': 0.1,
@@ -38,7 +38,7 @@ params = {
 
     # time
     't_min': 0.0,
-    't_max': 0.5,
+    't_max': 100,
     'dt': 0.1,
 
     # for initial conditions

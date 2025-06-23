@@ -51,11 +51,11 @@ def self_organised_clustering():
     # move the binary files from the C++ solver to the output folder
     print("\nSaving all outputs...")
     shutil.move(solver_directory / "binaries/3K3D/3K3D_u.bin",
-                output_directory / "binary/3K2D_u.bin")
+                output_directory / "binary/3K3D_u.bin")
     shutil.move(solver_directory / "binaries/3K3D/3K3D_v.bin",
                 output_directory / "binary/3K2D_v.bin")
     shutil.move(solver_directory / "binaries/3K3D/3K3D_w.bin",
-                output_directory / "binary/3K2D_w.bin")
+                output_directory / "binary/3K3D_w.bin")
 
     # save configuration
     with open(output_directory / 'config/parameters.txt', 'w') as f:
