@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-def plot_temp(u_data_path, v_data_path, dn=10):
+def plot(u_data_path, v_data_path, dn=10):
 
     def read_binary_3K3D(filepath):
         with open(filepath, 'rb') as f:
@@ -51,7 +51,7 @@ def plot_temp(u_data_path, v_data_path, dn=10):
         v_line = v[t, :, y_slice, z_slice]
 
         axs[1].plot(np.arange(nx), u_line, label=f'$u$')
-        axs[1].plot(np.arange(nx), v_line, label=f'$v$')
+        axs[1].plot(np.arange(nx), v_line, label=f'$v, w$')
         axs[1].set_ylim(1.1 * line_global_min, 1.1 * line_global_max)
         axs[1].set_xlim(0, nx - 1)
         axs[1].set_title(rf'slice at $y_{{idx}}$ = {y_slice}, $z_{{idx}}$ = {z_slice}, t = {np.round(t*0.1,1)}s')
@@ -64,8 +64,8 @@ def plot_temp(u_data_path, v_data_path, dn=10):
         plt.show()
 
 # usage
-plot_temp(
-    "/home/jgre668/3K3D-soml/outputs/SOML25tJe_merge_investigation/binary/3K2D_u.bin",
-    "/home/jgre668/3K3D-soml/outputs/SOML25tJe_merge_investigation/binary/3K2D_w.bin",
-    dn=10
+plot(
+    "/home/jgre668/3K3D-soml/outputs/SOML25tNf_merge_investigation/binary/3K3D_u.bin",
+    "/home/jgre668/3K3D-soml/outputs/SOML25tNf_merge_investigation/binary/3K3D_v.bin",
+    dn = 20
 )

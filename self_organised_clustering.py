@@ -43,7 +43,7 @@ def self_organised_clustering():
 
     # run the solver
     print('\nRunning solver...')
-    run_solver(solver_directory)
+    run_solver(params)
     print('...complete!')
     Time.checkpoint("Run solver")
 

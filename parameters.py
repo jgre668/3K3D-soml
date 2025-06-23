@@ -38,7 +38,7 @@ params = {
 
     # time
     't_min': 0.0,
-    't_max': 100,
+    't_max': 80,
     'dt': 0.1,
 
     # for initial conditions
