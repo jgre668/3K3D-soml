@@ -1,6 +1,7 @@
 from parameters import *
 from pipeline import *
 import shutil
+import time
 
 def self_organised_clustering():
 
@@ -18,7 +19,7 @@ def self_organised_clustering():
     # read in data and find the equivalent grid indices
     print('\nReading in data...')
     data_points, data_idx = process_data(data_file, params)
-    print('\n...arrays created')
+    print('...arrays created')
     Time.checkpoint("Process data")
 
     # solve for the stable stationary homogeneous states
@@ -64,7 +65,15 @@ def self_organised_clustering():
     print(f"...saved to {output_directory}")
     Time.checkpoint("Save all outputs")
 
-    print('Complete!')
+    print('\nPlotting...')
+    # usage
+    plot(
+        output_directory / "binary/3K3D_u.bin",
+        output_directory / "binary/3K3D_w.bin",
+        dn = params['dn']
+    )
+    Time.checkpoint("Plotting")
+    print('\nComplete!')
 
     Time.total()
 

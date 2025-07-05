@@ -1,7 +1,8 @@
 params = {
 
     # data file
-    'data_file': "/home/jgre668/test_data/3D/three_points.csv",
+    # 'data_file': "/home/jgre668/test_data/3D/iris_pca_3.csv",
+    'data_file': "/home/jgre668/test_data/3D/two_points_0.25_0.75.csv",
 
     # solver directory
     'solver_directory': "/home/jgre668/3K3D-solver",
@@ -10,7 +11,7 @@ params = {
     'output_path': "/home/jgre668/3K3D-soml/outputs",
 
     # label simulation
-    'label': "merge_investigation",
+    'label': "testing",
 
     # model parameters
     'kappa1': 0.1,
@@ -27,22 +28,25 @@ params = {
 
     # grid dimensions
     'x_min': 0,
-    'x_max': 1,
+    'x_max': 2,
     'y_min': 0,
-    'y_max': 1,
+    'y_max': 2,
     'z_min': 0,
-    'z_max': 1,
+    'z_max': 2,
     'dx': 0.01,
     'dy': 0.01,
     'dz': 0.01,
 
     # time
-    't_min': 0.0,
-    't_max': 80,
+    't_min': 0,
+    't_max': 0.1,
     'dt': 0.1,
 
     # for initial conditions
     'radius': 0.075,
     'curvature': 1,
+
+    # for plotting
+    'dn': 1
 
 }

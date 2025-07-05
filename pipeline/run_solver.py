@@ -4,7 +4,7 @@ import os
 def run_solver(params):
 
     solver_directory = params['solver_directory']
-    output_directory = params['output_directory']
+    output_path = params['output_path']
 
     # define paths
     build_dir = os.path.join(solver_directory, 'build')
@@ -12,7 +12,7 @@ def run_solver(params):
 
     # ensure build and config output directories exist
     os.makedirs(build_dir, exist_ok=True)
-    config_dir = os.path.join(output_directory, 'config')
+    config_dir = os.path.join(output_path, 'config')
     os.makedirs(config_dir, exist_ok=True)
 
     # configure with CMake using GCC 11

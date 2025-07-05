@@ -63,9 +63,3 @@ def plot(u_data_path, v_data_path, dn=10):
         plt.tight_layout()
         plt.show()
 
-# usage
-plot(
-    "/home/jgre668/3K3D-soml/outputs/SOML25tNf_merge_investigation/binary/3K3D_u.bin",
-    "/home/jgre668/3K3D-soml/outputs/SOML25tNf_merge_investigation/binary/3K3D_v.bin",
-    dn = 20
-)
