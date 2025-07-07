@@ -59,15 +59,6 @@ def self_organised_clustering():
     print(f"...saved to {output_directory}")
     Time.checkpoint("Save all outputs")
 
-    # print('\nPlotting...')
-    # # usage
-    # plot(
-    #     output_directory / "binary/3K3D_u.bin",
-    #     output_directory / "binary/3K3D_w.bin",
-    #     dn = params['dn']
-    # )
-    # Time.checkpoint("Plotting")
-
     print('\nComplete!')
 
     Time.total()
