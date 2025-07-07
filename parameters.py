@@ -1,8 +1,7 @@
 params = {
 
     # data file
-    # 'data_file': "/home/jgre668/test_data/3D/iris_pca_3.csv",
-    'data_file': "/home/jgre668/test_data/3D/two_points_0.25_0.75.csv",
+    'data_file': "/home/jgre668/test_data/3D/iris_pca_3.csv",
 
     # solver directory
     'solver_directory': "/home/jgre668/3K3D-solver",
@@ -11,7 +10,7 @@ params = {
     'output_path': "/home/jgre668/3K3D-soml/outputs",
 
     # label simulation
-    'label': "testing",
+    'label': "iris_3s",
 
     # model parameters
     'kappa1': 0.1,
@@ -27,19 +26,19 @@ params = {
     'Dw': 0.0015,
 
     # grid dimensions
-    'x_min': 0,
-    'x_max': 2,
-    'y_min': 0,
-    'y_max': 2,
-    'z_min': 0,
-    'z_max': 2,
-    'dx': 0.01,
-    'dy': 0.01,
-    'dz': 0.01,
+    'x_min': -4,
+    'x_max': 4,
+    'y_min': -4,
+    'y_max': 4,
+    'z_min': -4,
+    'z_max': 4,
+    'dx': 0.025,
+    'dy': 0.025,
+    'dz': 0.025,
 
     # time
     't_min': 0,
-    't_max': 0.1,
+    't_max': 3,
     'dt': 0.1,
 
     # for initial conditions

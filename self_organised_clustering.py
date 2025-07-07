@@ -1,7 +1,6 @@
 from parameters import *
 from pipeline import *
 import shutil
-import time
 
 def self_organised_clustering():
 
@@ -49,14 +48,9 @@ def self_organised_clustering():
     Time.checkpoint("Run solver")
 
 
-    # move the binary files from the C++ solver to the output folder
+    # move the folder of binary files from the C++ solver to the output folder
     print("\nSaving all outputs...")
-    shutil.move(solver_directory / "binaries/3K3D/3K3D_u.bin",
-                output_directory / "binary/3K3D_u.bin")
-    shutil.move(solver_directory / "binaries/3K3D/3K3D_v.bin",
-                output_directory / "binary/3K3D_v.bin")
-    shutil.move(solver_directory / "binaries/3K3D/3K3D_w.bin",
-                output_directory / "binary/3K3D_w.bin")
+    shutil.move(solver_directory / "binaries/3K3D", output_directory / "binary")
 
     # save configuration
     with open(output_directory / 'config/parameters.txt', 'w') as f:
@@ -65,14 +59,15 @@ def self_organised_clustering():
     print(f"...saved to {output_directory}")
     Time.checkpoint("Save all outputs")
 
-    print('\nPlotting...')
-    # usage
-    plot(
-        output_directory / "binary/3K3D_u.bin",
-        output_directory / "binary/3K3D_w.bin",
-        dn = params['dn']
-    )
-    Time.checkpoint("Plotting")
+    # print('\nPlotting...')
+    # # usage
+    # plot(
+    #     output_directory / "binary/3K3D_u.bin",
+    #     output_directory / "binary/3K3D_w.bin",
+    #     dn = params['dn']
+    # )
+    # Time.checkpoint("Plotting")
+
     print('\nComplete!')
 
     Time.total()
