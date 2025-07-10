@@ -10,7 +10,7 @@ params = {
     'output_path': "/home/jgre668/3K3D-soml/outputs",
 
     # label simulation
-    'label': "iris_3s",
+    'label': "test_split_compile_run",
 
     # model parameters
     'kappa1': 0.1,
@@ -38,7 +38,7 @@ params = {
 
     # time
     't_min': 0,
-    't_max': 200,
+    't_max': 1,
     'dt': 0.1,
 
     # for initial conditions

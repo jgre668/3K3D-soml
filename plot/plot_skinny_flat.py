@@ -60,7 +60,7 @@ def plot(array, t_idx, component="u", z_slice_fraction=0.5):
     plt.show()
 
 if __name__ == "__main__":
-    filename = "/outputs/SOML25u7d_iris_200s/binary/3K3D/u_t02000.bin"
+    filename = "/home/jgre668/3K3D-soml/outputs/SOML25uAa_test_split_compile_run/binary/3K3D/w_t00010.bin"
 
     t_idx, nx, ny, nz, data = read_snapshot(filename)
 

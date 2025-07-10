@@ -42,6 +42,11 @@ def self_organised_clustering():
     Time.checkpoint("Configure solver")
 
     # run the solver
+    print('\nCompiling solver...')
+    compile_solver(params)
+    print('...complete!')
+    Time.checkpoint("Compile solver")
+
     print('\nRunning solver...')
     run_solver(params)
     print('...complete!')
