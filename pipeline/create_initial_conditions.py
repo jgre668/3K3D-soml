@@ -15,8 +15,7 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
     dy = params['dy']
     dz = params['dz']
 
-    r = params['radius']
-    curvature = params['curvature']
+    radius = params['radius']
     u0_lower, u0_upper = params['states']
     a = u0_upper - u0_lower
 
@@ -29,10 +28,16 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
     V_init = np.full((nx, ny, nz), u0_lower, dtype=np.float32)
     W_init = np.full((nx, ny, nz), u0_lower, dtype=np.float32)
 
+
     scale_factor = nx / (x_max - x_min)
-    w = 4 * r
-    w_idx = int(w * scale_factor)
-    r_idx = r * scale_factor
+
+    r_idx = radius * scale_factor
+
+    width = 4 * radius
+    w_idx = int(width * scale_factor)
+
+    curvature = radius / 5
+    c_idx = curvature * scale_factor
 
     # create 3D perturbation block
     P = np.zeros((w_idx, w_idx, w_idx), dtype=np.float32)
@@ -41,7 +46,7 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
         for j in range(w_idx):
             for k in range(w_idx):
                 dist = np.sqrt((i - cx) ** 2 + (j - cy) ** 2 + (k - cz) ** 2)
-                P[i, j, k] = a / 2 * (1 + np.tanh((r_idx - dist) / curvature))
+                P[i, j, k] = a / 2 * (1 + np.tanh((r_idx - dist) / c_idx))
 
     # apply perturbations to U
     for (x_idx, y_idx, z_idx) in data_idx:
@@ -74,8 +79,8 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
 
         # Plot 1: Perturbation surface
         ax1 = fig.add_subplot(gs[0], projection='3d')
-        xp = np.linspace(0.0, w, w_idx)
-        yp = np.linspace(0.0, w, w_idx)
+        xp = np.linspace(0.0, width, w_idx)
+        yp = np.linspace(0.0, width, w_idx)
         XP, YP = np.meshgrid(xp, yp)
         P_slice = P[:, :, w_idx // 2]
 

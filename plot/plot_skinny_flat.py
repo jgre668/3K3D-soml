@@ -21,7 +21,7 @@ def read_snapshot(filename):
     return t_idx, nx, ny, nz, array
 
 
-def plot(array, t_idx, component="u", z_slice_fraction=0.5):
+def plot(array, t_idx, component = "u", z_slice_fraction = 0.5):
     """
     plot a 1x2 grid with:
     - left: max projection along z
@@ -35,13 +35,14 @@ def plot(array, t_idx, component="u", z_slice_fraction=0.5):
     # compute global min and max for consistent color scale
     vmin = np.min(array)
     vmax = np.max(array)
+    cmap = 'magma'
 
     fig, axs = plt.subplots(1, 2, figsize=(10, 5))
 
     # left: max projection along z
     projection = np.max(array, axis=2)
     im0 = axs[0].imshow(projection.T, origin="lower", aspect="equal",
-                        cmap="viridis", vmin=vmin, vmax=vmax)
+                        cmap=cmap, vmin=vmin, vmax=vmax)
     axs[0].set_title(f"max projection of ${component}$ (z-axis) at $t_{{idx}}$ = {t_idx}")
     axs[0].set_xlabel("$x$")
     axs[0].set_ylabel("$y$")
@@ -50,7 +51,7 @@ def plot(array, t_idx, component="u", z_slice_fraction=0.5):
     # right: slice through z
     slice_z = array[:, :, z_index]
     im1 = axs[1].imshow(slice_z.T, origin="lower", aspect="equal",
-                        cmap="viridis", vmin=vmin, vmax=vmax)
+                        cmap=cmap, vmin=vmin, vmax=vmax)
     axs[1].set_title(f"z-slice of ${component}$ at {z_index}/{nz}, $t_{{idx}}$ = {t_idx}")
     axs[1].set_xlabel("$x$")
     axs[1].set_ylabel("$y$")
@@ -59,8 +60,30 @@ def plot(array, t_idx, component="u", z_slice_fraction=0.5):
     plt.tight_layout()
     plt.show()
 
+
+def save_csv(array, filename, spacing=(1.0, 1.0, 1.0), origin=(0.0, 0.0, 0.0), field_name="u", step=4):
+    """
+    Save a downsampled 3D numpy array to CSV as (x, y, z, value) format.
+    Only writes every `step`th point in each dimension.
+    """
+    nx, ny, nz = array.shape
+    dx, dy, dz = spacing
+    ox, oy, oz = origin
+
+    with open(filename, "w") as f:
+        f.write("x,y,z," + field_name + "\n")
+        for i in range(0, nx, step):
+            for j in range(0, ny, step):
+                for k in range(0, nz, step):
+                    x = ox + i * dx
+                    y = oy + j * dy
+                    z = oz + k * dz
+                    value = array[i, j, k]
+                    f.write(f"{x},{y},{z},{value}\n")
+    print(f"Saved downsampled CSV to {filename} (step={step})")
+
 if __name__ == "__main__":
-    filename = "/home/jgre668/3K3D-soml/outputs/SOML25uAa_test_split_compile_run/binary/3K3D/w_t00010.bin"
+    filename = "/home/jgre668/3K3D-soml/outputs/SOML25u7d_iris_200s/binary/3K3D/u_t02000.bin"
 
     t_idx, nx, ny, nz, data = read_snapshot(filename)
 
@@ -68,3 +91,6 @@ if __name__ == "__main__":
         plot(data, t_idx = t_idx,
                    component = "u",
                    z_slice_fraction = z_slice_fraction)
+
+    # SAVE TO VTK FOR PARAVIEW
+    # save_csv(data, f"temperature_t{t_idx:05d}.csv", field_name="u")

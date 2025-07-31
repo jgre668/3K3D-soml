@@ -10,7 +10,7 @@ params = {
     'output_path': "/home/jgre668/3K3D-soml/outputs",
 
     # label simulation
-    'label': "test_split_compile_run",
+    'label': "test_new_tanh",
 
     # model parameters
     'kappa1': 0.1,
@@ -43,9 +43,8 @@ params = {
 
     # for initial conditions
     'radius': 0.075,
-    'curvature': 1,
 
     # for plotting
-    'dn': 1
+    'dn': 1,
 
 }
