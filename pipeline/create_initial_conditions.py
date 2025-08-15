@@ -15,6 +15,8 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
     dy = params['dy']
     dz = params['dz']
 
+    cmap = params['cmap']
+
     radius = params['radius']
     u0_lower, u0_upper = params['states']
     a = u0_upper - u0_lower
@@ -84,7 +86,7 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
         XP, YP = np.meshgrid(xp, yp)
         P_slice = P[:, :, w_idx // 2]
 
-        ax1.plot_surface(XP, YP, P_slice, cmap='viridis', edgecolor='none')
+        ax1.plot_surface(XP, YP, P_slice, cmap=cmap, edgecolor='none')
         ax1.set_title('3D perturbation (mid z-slice)', pad=10)
         ax1.set_xlabel('$x$', labelpad=8)
         ax1.set_ylabel('$y$', labelpad=8)
@@ -94,7 +96,7 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
         # Plot 2: Max projection
         ax2 = fig.add_subplot(gs[1])
         max_proj = np.max(U_init, axis=2).T
-        img = ax2.imshow(max_proj, cmap='viridis', origin='lower')
+        img = ax2.imshow(max_proj, cmap=cmap, origin='lower')
         ax2.set_title('Initial $u$ field (max projection)', pad=10)
         ax2.set_xlabel('$x$')
         ax2.set_ylabel('$y$')
@@ -109,7 +111,7 @@ def create_initial_conditions_3d(data_idx, output_directory, params, plot = True
         X, Y = np.meshgrid(x, y)
         U_slice = U_init[:, :, z_mid].T
 
-        ax3.plot_surface(X, Y, U_slice, cmap='viridis', edgecolor='none')
+        ax3.plot_surface(X, Y, U_slice, cmap=cmap, edgecolor='none')
         ax3.set_title('Initial $u$ field (mid z-slice)', pad=10)
         ax3.set_xlabel('$x$', labelpad=8)
         ax3.set_ylabel('$y$', labelpad=8)

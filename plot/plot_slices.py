@@ -1,5 +1,14 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from parameters import *
+
+cmap = params['cmap']
+
+"""
+plotting code that takes a snapshot and 'scans' through it, plotting at certain slices
+and also plotting the projection of maximum displacement
+
+"""
 
 def read_snapshot(filename):
     with open(filename, "rb") as f:
@@ -21,7 +30,7 @@ def read_snapshot(filename):
     return t_idx, nx, ny, nz, array
 
 
-def plot(array, t_idx, component = "u", z_slice_fraction = 0.5):
+def plot_slices(array, t_idx, component ="u", z_slice_fraction = 0.5, cmap = cmap):
     """
     plot a 1x2 grid with:
     - left: max projection along z
@@ -35,7 +44,6 @@ def plot(array, t_idx, component = "u", z_slice_fraction = 0.5):
     # compute global min and max for consistent color scale
     vmin = np.min(array)
     vmax = np.max(array)
-    cmap = 'magma'
 
     fig, axs = plt.subplots(1, 2, figsize=(10, 5))
 
@@ -83,14 +91,15 @@ def save_csv(array, filename, spacing=(1.0, 1.0, 1.0), origin=(0.0, 0.0, 0.0), f
     print(f"Saved downsampled CSV to {filename} (step={step})")
 
 if __name__ == "__main__":
-    filename = "/home/jgre668/3K3D-soml/outputs/SOML25u7d_iris_200s/binary/3K3D/u_t02000.bin"
+
+    filename = "/home/jgre668/3K3D-solver/binaries/3K3D/u_t00000.bin"
 
     t_idx, nx, ny, nz, data = read_snapshot(filename)
 
-    for z_slice_fraction in np.arange(0.3, 0.67, 0.01):
-        plot(data, t_idx = t_idx,
-                   component = "u",
-                   z_slice_fraction = z_slice_fraction)
+    for z_slice_fraction in np.arange(0.3, 0.6, 0.1):
+        plot_slices(data, t_idx = t_idx,
+                    component = "u",
+                    z_slice_fraction = z_slice_fraction)
 
     # SAVE TO VTK FOR PARAVIEW
     # save_csv(data, f"temperature_t{t_idx:05d}.csv", field_name="u")
