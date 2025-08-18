@@ -30,6 +30,8 @@ def configure_solver(solver_directory, output_directory, params):
     kappa3 = params['kappa3']
     kappa4 = params['kappa4']
 
+    bc = params['boundary_condition']
+
     # path to the C++ file
     param_file = os.path.join(solver_directory, 'src', '3K3D.cpp')  # Adjusted for 3D solver
 
@@ -89,6 +91,9 @@ def configure_solver(solver_directory, output_directory, params):
 
         r'constexpr\s+double\s+kappa4\s*=\s*[^;]+;':
             f'constexpr double kappa4 = {kappa4};',
+
+        r'constexpr\s+int\s+bc\s*=\s*[^;]+;':
+            f'constexpr int bc = {bc};',
 
         r'const std::string filename_ics\s*=.*?;':
             fr'const std::string filename_ics = "{str(output_directory)}/binary/initial_conditions.bin";'

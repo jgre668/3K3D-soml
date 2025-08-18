@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from pathlib import Path
+
 from parameters import *
 
 cmap = params['cmap']
@@ -16,13 +18,8 @@ def read_snapshot(filename):
         header = np.frombuffer(f.read(16), dtype=np.int32)
         t_idx, nx, ny, nz = header
 
-        print(f"time index: {t_idx}, shape: ({nx}, {ny}, {nz})")
-
         # read the flat data
         data = np.frombuffer(f.read(), dtype=np.float64)
-        expected_size = nx * ny * nz
-        if data.size != expected_size:
-            raise ValueError(f"expected {expected_size} elements, got {data.size}")
 
         # reshape to (nx, ny, nz)
         array = data.reshape((nx, ny, nz))
@@ -68,7 +65,6 @@ def plot_slices(array, t_idx, component ="u", z_slice_fraction = 0.5, cmap = cma
     plt.tight_layout()
     plt.show()
 
-
 def save_csv(array, filename, spacing=(1.0, 1.0, 1.0), origin=(0.0, 0.0, 0.0), field_name="u", step=4):
     """
     Save a downsampled 3D numpy array to CSV as (x, y, z, value) format.
@@ -92,14 +88,31 @@ def save_csv(array, filename, spacing=(1.0, 1.0, 1.0), origin=(0.0, 0.0, 0.0), f
 
 if __name__ == "__main__":
 
-    filename = "/home/jgre668/3K3D-solver/binaries/3K3D/u_t00000.bin"
+    """ ------------plot one from every file------------"""
 
-    t_idx, nx, ny, nz, data = read_snapshot(filename)
+    z_slice_fraction = 0
 
-    for z_slice_fraction in np.arange(0.3, 0.6, 0.1):
+    outputs = Path("/home/jgre668/3K3D-soml/outputs")
+    dirs = [d for d in outputs.iterdir() if d.is_dir()]
+    most_recent_dir = max(dirs, key=lambda d: d.stat().st_mtime) / "binary/3K3D"
+
+    for file in sorted(most_recent_dir.iterdir()):
+        t_idx, nx, ny, nz, data = read_snapshot(file)
         plot_slices(data, t_idx = t_idx,
-                    component = "u",
-                    z_slice_fraction = z_slice_fraction)
+                          component = "u",
+                          z_slice_fraction = z_slice_fraction)
+
+    """ -------plot multiples slices from one file-------"""
+
+    # file = ""
+    #
+    # t_idx, nx, ny, nz, data = read_snapshot(file)
+    #
+    # for z_slice_fraction in np.arange(0.3, 0.6, 0.1):
+    #
+    #     plot_slices(data, t_idx = t_idx,
+    #                       component = "u",
+    #                       z_slice_fraction = z_slice_fraction)
 
     # SAVE TO VTK FOR PARAVIEW
     # save_csv(data, f"temperature_t{t_idx:05d}.csv", field_name="u")

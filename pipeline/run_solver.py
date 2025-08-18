@@ -4,7 +4,7 @@ import os
 def run_solver(params):
 
     solver_directory = params['solver_directory']
-    output_path = params['output_path']
+    output_path = params['output_directory']
 
     # define paths
     build_dir = os.path.join(solver_directory, 'build')

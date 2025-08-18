@@ -1,7 +1,7 @@
 params = {
 
     # data file
-    'data_file': "/home/jgre668/test_data/3D/three_points.csv",
+    'data_file': "/home/jgre668/test_data/3D/single_point_origin.csv",
 
     # solver directory
     'solver_directory': "/home/jgre668/3K3D-solver",
@@ -10,7 +10,7 @@ params = {
     'output_path': "/home/jgre668/3K3D-soml/outputs",
 
     # label simulation
-    'label': "SOML2525vFb_testing_error",
+    'label': "SOML25vIc_testing_cyclic_boundaries",
 
     # model parameters
     'kappa1': 0.1,
@@ -26,11 +26,11 @@ params = {
     'Dw': 0.0015,
 
     # grid dimensions
-    'x_min': 0,
+    'x_min': -0.1,
     'x_max': 1,
-    'y_min': 0,
+    'y_min': -0.1,
     'y_max': 1,
-    'z_min': 0,
+    'z_min': -0.1,
     'z_max': 1,
     'dx': 0.01,
     'dy': 0.01,
@@ -38,14 +38,19 @@ params = {
 
     # time
     't_min': 0,
-    't_max': 80,
+    't_max': 10,
     'dt': 0.1,
+
+    # use 0 for neumann and 1 for cyclic
+    'boundary_condition': 0,
 
     # for initial conditions
     'radius': 0.075,
 
+    # stop once activator integral has converged
+    'stop_at_convergence': True,
+
     # for plotting
-    'dn': 1,
     'cmap': 'magma'
 
 }

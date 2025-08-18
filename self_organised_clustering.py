@@ -56,7 +56,6 @@ def self_organised_clustering():
 
     """ Other clustering steps have not yet been implemented."""
 
-
     # STEP 11: save outputs that haven't been saved yet
     # move the binary files from the C++ solver to the output folder
     print("\nSaving all outputs...")

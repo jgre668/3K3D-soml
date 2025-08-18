@@ -1,5 +1,5 @@
 from pathlib import Path
-import subprocess
+import shutil
 
 def create_output_directory(params):
 
@@ -18,6 +18,10 @@ def create_output_directory(params):
 
     # create the output folder
     output_directory = Path(output_path) / name
+
+    if output_directory.exists():
+        shutil.rmtree(output_directory)
+
     output_directory.mkdir(parents=True, exist_ok=True)
 
     # create subdirectories: plot, config, binary
