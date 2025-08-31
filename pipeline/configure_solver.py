@@ -1,5 +1,6 @@
 import os
 import re
+import shutil
 
 def configure_solver(solver_directory, output_directory, params):
 
@@ -106,3 +107,6 @@ def configure_solver(solver_directory, output_directory, params):
     # write back to file
     with open(param_file, 'w') as file:
         file.write(content)
+
+    # delete the current output directory containing any existing binary files
+    shutil.rmtree(str(solver_directory) + "/binaries")
