@@ -109,4 +109,6 @@ def configure_solver(solver_directory, output_directory, params):
         file.write(content)
 
     # delete the current output directory containing any existing binary files
-    shutil.rmtree(str(solver_directory) + "/binaries")
+    output_dir = os.path.join(solver_directory, "binaries")
+    if os.path.exists(output_dir):
+        shutil.rmtree(output_dir)
